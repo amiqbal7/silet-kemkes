@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const DataList = () => {
+const Coba = () => {
   const [dataList, setDataList] = useState([]);
 
   useEffect(() => {
@@ -45,4 +45,4 @@ const DataList = () => {
   );
 };
 
-export default DataList;
+export default Coba;

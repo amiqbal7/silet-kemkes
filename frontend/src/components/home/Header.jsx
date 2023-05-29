@@ -39,7 +39,7 @@ const Header = () => {
               <img
                 src={item.img}
                 alt="movie"
-                className="w-full h-[500px] md:h-[800px] object-cover"
+                className="w-full h-[800px] object-cover"
               />
               <div className="">
                 <div className="absolute bottom-0 right-0 left-0 flex flex-col md:py-64 py-16 justify-center mx-5">

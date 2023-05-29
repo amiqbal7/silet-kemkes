@@ -1,15 +1,37 @@
 import React, { useState } from "react";
+import logo from "../assets/logo_kemkes.png";
 import { Link } from "react-scroll";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import { AiOutlineCaretDown } from "react-icons/ai";
+import { VscSignOut } from "react-icons/vsc";
+import { logout } from "../redux/reducers/authReducers";
 
 const Navbar = () => {
-  const [nav, setNav] = useState(false);
+  const dispatch = useDispatch();
   const handleClick = () => setNav(!nav);
-  const handleClose = () => setNav(!nav);
   const navigate = useNavigate();
+  const handleClose = () => setNav(!nav);
+  const [nav, setNav] = useState(false);
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const user = useSelector((state) => state.auth.user);
+  const [isOpen, setIsOpen] = useState(false);
 
+  const handlelogout = () => {
+    dispatch(logout());
+  };
+
+  const toggleDropdown = () => {
+    setRotate(!rotate);
+    setIsOpen(!isOpen);
+  };
+
+  const [rotate, setRotate] = useState(false);
+
+  const selectOption = () => {
+    setIsOpen(false);
+  };
   const handleClickLogin = () => {
     navigate(`/login`);
   };
@@ -19,21 +41,16 @@ const Navbar = () => {
   };
 
   return (
-    <div
-      className="sticky top-0 z-20 bg-gray-100 justify-between drop-shadow-lg px-16 py-3"
-    >
-      <div
-
-        className="flex justify-between items-center w-full"
-      >
-        <div  className="w-20">
-          <h1>kemenkes</h1>
+    <div className="sticky top-0 z-20 bg-sky-800 drop-shadow-lg px-16 py-3">
+      <div className="flex justify-between items-center w-full text-white">
+        <div className="">
+          <img src={logo} className="w-56" />
         </div>
         <div className="lg:text-lg ">
-          <ul className="hidden md:flex font-bold gap-3 md:gap-0">
+          <ul className="hidden md:flex font-semibold md:gap-5">
             <li
               className="hover:text-green-500 relative cursor-pointer transition-all 
-            before:absolute before:-bottom-2 before:left-0 before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all
+            before:absolute before:-bottom-2 before:left-0 before:w-0 before:h-1 before:rounded-sm before:opacity-0 before:transition-all
             before:duration-500 before:bg-green-500 hover:before:w-full hover:before:opacity-100"
             >
               <Link
@@ -108,16 +125,56 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="hidden md:flex pr-4">
-          <button
-            className="px-4 py-2 h-11 bg-[#007936]"
-            onClick={() => handleClickLogin()}
-          >
-            LogIn
-          </button>
+        <div className="hidden md:flex ">
+          {isLoggedIn ? (
+            <ul className="flex gap-0 pt-2">
+              <h1>
+                Welcome, {user && user.username ? user.username : "Guest"}
+              </h1>
+              <div className="relative">
+                <button
+                  className={`bg-transparent text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center transform transition duration-300 ease-in-out ${
+                    rotate ? "rotate-180" : ""
+                  }`}
+                  onClick={toggleDropdown}
+                >
+                  <span className="text-white">
+                    <AiOutlineCaretDown />
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="absolute text-sky-500 font-medium bg-white rounded-sm w-28 px-3 py-2 top-10 right-0 text-center">
+                    <button
+                      className="flex gap-2"
+                      onClick={() => selectOption(handlelogout())}
+                    >
+                      <p className="pt-1 text-xl">
+                        <VscSignOut />
+                      </p>
+                      <p>Log Out</p>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </ul>
+          ) : (
+            <ul className="flex gap-3">
+              <button
+                className="bg-white text-cyan-700 rounded-sm font-bold px-4 py-1"
+                onClick={() => handleClickLogin()}
+              >
+                login
+              </button>
+            </ul>
+          )}
         </div>
+
         <div className="md:hidden mr-4" onClick={handleClick}>
-          {!nav ? <AiOutlineMenu className="w-5" /> : <AiOutlineClose className="w-5" />}
+          {!nav ? (
+            <AiOutlineMenu className="w-5" />
+          ) : (
+            <AiOutlineClose className="w-5" />
+          )}
         </div>
       </div>
       <ul className={!nav ? "hidden" : " bg-gray-100 w-full px-8 "}>

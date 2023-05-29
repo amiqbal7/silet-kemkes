@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const EditForm = () => {
   const [data, setData] = useState({
-    id: '',
-    data1: '',
-    data2: '',
-    data3: ''
+    id: "1",
+    total_peserta_lulus: "",
+    peserta_sudah_kembali: "",
+    peserta_belum_kembali: "",
   });
 
   const handleChange = (e) => {
@@ -17,23 +17,24 @@ const EditForm = () => {
     e.preventDefault();
 
     // Lakukan permintaan HTTP PUT menggunakan Axios
-    axios.put(`http://localhost:4000/data1/${data.id}`, {
-      data1: data.data1,
-      data2: data.data2,
-      data3: data.data3
-    })
-      .then(response => {
+    axios
+      .put(`http://localhost:4000/peserta_lulus/${data.id}`, {
+        total_peserta_lulus: data.total_peserta_lulus,
+        peserta_sudah_kembali: data.peserta_sudah_kembali,
+        peserta_belum_kembali: data.peserta_belum_kembali,
+      })
+      .then((response) => {
         // Tampilkan respons dari server
         console.log(response.data);
         // Reset nilai input form jika berhasil
         setData({
-          id: '',
-          data1: '',
-          data2: '',
-          data3: ''
+          id: "1",
+          total_peserta_lulus: "",
+          peserta_sudah_kembali: "",
+          peserta_belum_kembali: "",
         });
       })
-      .catch(error => {
+      .catch((error) => {
         // Tangani kesalahan jika terjadi
         console.error(error);
       });
@@ -41,50 +42,24 @@ const EditForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto">
+    
       <div className="mb-4">
-        <label htmlFor="id" className="block text-gray-700 text-sm font-bold mb-2">ID:</label>
+        <label
+          htmlFor="total_peserta_lulus"
+          className="block text-gray-700 text-sm font-bold mb-2"
+        >
+          Total Peserta Lulus:
+        </label>
         <input
           type="text"
-          id="id"
-          name="id"
-          value={data.id}
+          id="total_peserta_lulus"
+          name="total_peserta_lulus"
+          value={data.total_peserta_lulus}
           onChange={handleChange}
           className="border border-gray-400 rounded py-2 px-3 w-full"
         />
       </div>
-      <div className="mb-4">
-        <label htmlFor="data1" className="block text-gray-700 text-sm font-bold mb-2">Data 1:</label>
-        <input
-          type="text"
-          id="data1"
-          name="data1"
-          value={data.data1}
-          onChange={handleChange}
-          className="border border-gray-400 rounded py-2 px-3 w-full"
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="data2" className="block text-gray-700 text-sm font-bold mb-2">Data 2:</label>
-        <input
-          type="text"
-          id="data2"
-          name="data2"
-          value={data.data2}
-          onChange={handleChange}
-          className="border border-gray-400 rounded py-2 px-3 w-full"
-        />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="data3" className="block text-gray-700 text-sm font-bold mb-2">Data 3:</label>
-        <input
-          type="text"
-          id="data3"
-          name="data3"
-          value={data.data3}
-          onChange={handleChange}
-          className="border border-gray-400 rounded py-2 px-3 w-full"
-        />
-      </div>
+    
       <button
         type="submit"
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
