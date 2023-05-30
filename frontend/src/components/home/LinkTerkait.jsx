@@ -14,11 +14,11 @@ const LinkTerkait = () => {
 
   return (
     <div className="lg:mx-20 mx-5 pb-36">
-      <div className="bg-cyan-200 text-center py-10 lg:flex rounded-md">
+      <div className="bg-sky-200 text-center py-10 lg:flex rounded-md">
         <h1 className="text-3xl font-semibold text-sky-800 md:mr-16 pb-4">
           Link Terkait
         </h1>
-        <div className="w-full lg:mx-auto px-7 justify-items-center grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5">
+        <div className="w-full lg:mx-auto px-7 justify-items-center grid sm:grid-cols-2 xl:grid-cols-4 gap-5">
           <div
             onMouseEnter={() => handleMouseEnter(0)}
             onMouseLeave={handleMouseLeave}

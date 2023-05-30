@@ -4,6 +4,7 @@ import Total from "../Total";
 import Coba from "../../pages/coba";
 import Tentang from "../Tentang";
 import LinkTerkait from "./LinkTerkait";
+import PesertaAktif from "../PesertaAktif";
 
 const Home = () => {
   return (
@@ -12,6 +13,7 @@ const Home = () => {
       <Total />
       <Tentang />
       <LinkTerkait />
+      <PesertaAktif />
       
 
     </>

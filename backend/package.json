@@ -7,8 +7,10 @@
     "mysql": "^2.18.1",
     "nodemon": "^2.0.22",
     "passport": "^0.6.0",
+    "promisfy": "^1.2.0",
     "react-collapse": "^5.1.1",
-    "sequelize": "^6.31.1"
+    "sequelize": "^6.31.1",
+    "util": "^0.12.5"
   },
   "scripts": {
     "start": "node server.js"

@@ -78,7 +78,7 @@ app.post("/login", (req, res) => {
 });
 
 app.get("/silet_kemkes", (req, res) => {
-  db.query("SELECT * FROM peserta_lulus", (err, result) => {
+  db.query("SELECT * FROM data", (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).json({ message: "Failed to retrieve data" });
@@ -87,6 +87,38 @@ app.get("/silet_kemkes", (req, res) => {
     }
   });
 });
+
+// const util = require("util");
+// const query = util.promisify(db.query).bind(db);
+// app.get("/silet_kemkes", async (req, res) => {
+//   const { table } = req.query;
+//   const { id } = req.params;
+//   const Nama_data = req.body.Nama_data;
+//   const Jumlah = req.body.Jumlah;
+
+//   try {
+//     if (table === "peserta_lulus") {
+//       const result = await query(
+//         "SELECT * FROM peserta_lulus WHERE id = ? AND Nama_data = ? AND Jumlah = ?",
+//         [id, Nama_data, Jumlah]
+//       );
+//       res.json(result);
+//     } else if (table === "data") {
+//       const result = await query(
+//         "SELECT * FROM data WHERE id = ? AND Nama_data = ? AND Jumlah = ?",
+//         [id]
+//       );
+//       res.json(result);
+//     } else {
+//       res.status(400).json({ message: "Invalid table name" });
+//     }
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ message: "Failed to retrieve data" });
+//   }
+// });
+
+
 
 app.put("/peserta_lulus/:id", (req, res) => {
   const id = req.params.id;
