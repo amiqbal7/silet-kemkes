@@ -120,24 +120,22 @@ app.get("/silet_kemkes", (req, res) => {
 
 
 
-app.put("/peserta_lulus/:id", (req, res) => {
+app.put("/update/:id", (req, res) => {
   const id = req.params.id;
-  const { total_peserta_lulus, peserta_sudah_kembali, peserta_belum_kembali } =
-    req.body;
+  const sql = "UPDATE data SET `Nama_data` =?, `Jumlah` =? WHERE id =?"
+  const Jumlah = req.body.Jumlah;
+  const Nama_data = req.body.Nama_data;
 
   db.query(
-    "UPDATE peserta_lulus SET total_peserta_lulus = ?, peserta_sudah_kembali = ?, peserta_belum_kembali = ? WHERE id = ?",
-    [total_peserta_lulus, peserta_sudah_kembali, peserta_belum_kembali, id],
+    sql,
+    [Jumlah, Nama_data, id],
     (err, result) => {
-      if (err) {
-        console.error(err);
-        res.status(500).json({ message: "Failed to update data" });
-      } else {
-        res.status(200).json({ message: "Data updated successfully" });
-      }
+      if(err) return res.json("err");
+      return res.json({update: true})
     }
   );
 });
+
 
 app.listen(4000, () => {
   console.log("Server is listening on port 4000");

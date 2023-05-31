@@ -1,18 +1,15 @@
 import React from "react";
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
-    <div>
-      <footer aria-label="Site Footer" class="bg-white lg:grid lg:grid-cols-5">
-        <div class="relative block h-32 lg:col-span-2 lg:h-full">
-          <img
-            src="https://images.unsplash.com/photo-1642370324100-324b21fab3a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80"
-            alt=""
-            class="absolute inset-0 object-cover w-full h-full"
-          />
+    <div className="bg-sky-800 ">
+      <div className="lg:grid lg:grid-cols-4 mt-16 max-w-7xl mx-auto pt-10">
+        <div class="">
+          <img src={logo} class=" w-64" />
         </div>
 
-        <div class="px-4 py-16 sm:px-6 lg:col-span-3 lg:px-8">
+        <div class="px-4 py-2 sm:px-6 lg:col-span-3 lg:px-8">
           <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
             <div>
               <p>
@@ -241,48 +238,15 @@ const Footer = () => {
                 </nav>
               </div>
             </div>
+           
           </div>
-
-          <div class="pt-12 mt-12 border-t border-gray-100">
-            <div class="sm:flex sm:items-center sm:justify-between">
-              <nav aria-label="Footer Navigation - Support">
-                <ul class="flex flex-wrap gap-4 text-xs">
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-500 transition hover:opacity-75"
-                    >
-                      Terms & Conditions
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-500 transition hover:opacity-75"
-                    >
-                      Privacy Policy
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href="#"
-                      class="text-gray-500 transition hover:opacity-75"
-                    >
-                      Cookies
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-
-              <p class="mt-8 text-xs text-gray-500 sm:mt-0">
+        </div>
+      </div>
+      <div>
+              <p className="mt-8 text-xs text-white sm:mt-0 text-center py-5 bg-slate-600 w-full">
                 &copy; 2022. Company Name. All rights reserved.
               </p>
             </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };

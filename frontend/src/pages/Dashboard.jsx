@@ -1,130 +1,69 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useHistory } from "react";
 import { getPosts } from "../redux/actions/postActions";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.post);
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
 
-  const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/Update");
+  const handleSubmit = (id) => {
+    navigate(`/update/${id}`);
   };
 
+  const getBackgroundColor = (index) => {
+    const bgColor = [
+      "#00000",
+      "#DDE6ED",
+    ];
+    const colorIndex = index % bgColor.length;
+    return bgColor[colorIndex];
+  };
+
+
   return (
-    <div>
-      {posts.map((data) => (
-        <div key={data.id}>
-          <table className="table-fixed border-collapse border border-slate-500 ">
-            <thead>
-              <tr>
-                <th className="border border-slate-600 ">Nama Data</th>
-                <th className="border border-slate-600 ">Jumlah</th>
-                <th className="border border-slate-600 ">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr className="">
-                <td>Total Peserta Lulus</td>
-                <td>{data.total_peserta_lulus}</td>
-                <td><button onClick={handleSubmit} className="bg-green-400 px-5 ">Edit</button></td>
-              </tr>
-              <tr>
-                <td className="border border-slate-600 ">Peserta Sudah Kembali</td>
-                <td className="border border-slate-600 ">{data.peserta_sudah_kembali}</td>
-                <td className="border border-slate-600 ">1972</td>
-              </tr>
-              <tr>
-                <td>Shining Star</td>
-                <td>Earth, Wind, and Fire</td>
-                <td>1975</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      ))}
+    <div className="grid md:mx-auto mx-5 justify-center my-16">
+      <table className="table-fixed border-collapse border border-gray-500">
+        <thead>
+          <tr className="bg-sky-200">
+            <th className="border border-gray-600 py-2 px-4">ID</th>
+            <th className="border border-gray-600 py-2 px-4">Nama Data</th>
+            <th className="border border-gray-600 py-2 px-4">Jumlah</th>
+            <th className="border border-gray-600 py-2 px-4">Aksi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {posts.map((data, index) => (
+            <tr
+              key={data.id}
+              style={{ backgroundColor: getBackgroundColor(index) }}
+            >
+              <td className="border border-gray-600 py-2 px-4">{data.id}</td>
+              <td className="border border-gray-600 py-2 px-4">
+                {data.Nama_data}
+              </td>
+              <td className="border border-gray-600 py-2 px-4">
+                {data.Jumlah}
+              </td>
+              <td className="border border-gray-600 py-2 px-4">
+                <button
+                  onClick={() => handleSubmit(data.id)}
+                  className="bg-green-600 px-5 py-2 text-white rounded"
+                >
+                  Edit
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
 
 export default Dashboard;
-
-// import React, { useState } from "react";
-// import { useDispatch } from "react-redux";
-// import { getUpdate } from "../redux/actions/updateActions";
-
-// const Dashboard = () => {
-//   const dispatch = useDispatch();
-//   const [formData, setFormData] = useState({
-//     total_peserta_lulus: "",
-//     peserta_sudah_kembali: "",
-//     peserta_belum_kembali: "",
-//   });
-
-//   const handleChange = (e) => {
-//     setFormData({
-//       ...formData,
-//       [e.target.name]: e.target.value,
-//     });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     const {
-//       total_peserta_lulus,
-//       peserta_sudah_kembali,
-//       peserta_belum_kembali,
-//     } = formData;
-//     const id = "your_id"; // Ganti dengan id yang sesuai
-//     dispatch(
-//       getUpdate(id, {
-//         total_peserta_lulus,
-//         peserta_sudah_kembali,
-//         peserta_belum_kembali,
-//       })
-//     );
-//   };
-
-//   return (
-//     <div>
-//       <h1>Update Data</h1>
-//       <form onSubmit={handleSubmit}>
-//         <div>
-//           <label>Total Peserta Lulus:</label>
-//           <input
-//             type="text"
-//             name="total_peserta_lulus"
-//             value={formData.total_peserta_lulus}
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div>
-//           <label>Peserta Sudah Kembali:</label>
-//           <input
-//             type="text"
-//             name="peserta_sudah_kembali"
-//             value={formData.peserta_sudah_kembali}
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <div>
-//           <label>Peserta Belum Kembali:</label>
-//           <input
-//             type="text"
-//             name="peserta_belum_kembali"
-//             value={formData.peserta_belum_kembali}
-//             onChange={handleChange}
-//           />
-//         </div>
-//         <button type="submit">Update</button>
-//       </form>
-//     </div>
-//   );
-// };
-
-// export default Dashboard;

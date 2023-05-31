@@ -10,6 +10,8 @@ import store from "./redux/store";
 import Loading from "./components/Loading";
 import Footer from "./components/Footer";
 import Test from "./components/Test";
+import Protected from "./components/Protected";
+import RedirectifProtected from "./components/RedirectifProtected";
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -30,15 +32,30 @@ function App() {
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/update" element={<EditForm />} />
-              <Route path="/login" element={<Login />} />
+
+              <Route path="/update/:id" element={<EditForm />} />
               <Route path="/test" element={<Test />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <Protected>
+                    <Dashboard />
+                  </Protected>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <RedirectifProtected>
+                    <Login />
+                  </RedirectifProtected>
+                }
+              />
             </Routes>
           </div>
         )}
       </BrowserRouter>
-      {/* <Footer /> */}
+      <Footer />
     </Provider>
   );
 }

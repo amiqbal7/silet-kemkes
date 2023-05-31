@@ -5,7 +5,7 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { AiOutlineCaretDown } from "react-icons/ai";
-import { VscSignOut } from "react-icons/vsc";
+import { VscSignOut, VscDashboard } from "react-icons/vsc";
 import { logout } from "../redux/reducers/authReducers";
 
 const Navbar = () => {
@@ -39,12 +39,15 @@ const Navbar = () => {
   const handleClickHome = () => {
     navigate(`/`);
   };
+  const handleClickDashboard = () => {
+    navigate(`/dashboard`);
+  };
 
   return (
     <div className="sticky top-0 z-20 bg-sky-800 drop-shadow-lg px-16 py-3">
       <div className="flex justify-between items-center w-full text-white">
         <div className="">
-          <img src={logo} className="w-56" />
+          <img src={logo} className="w-56" onClick={handleClickHome}/>
         </div>
         <div className="lg:text-lg ">
           <ul className="hidden md:flex font-semibold md:gap-5">
@@ -152,6 +155,15 @@ const Navbar = () => {
                         <VscSignOut />
                       </p>
                       <p>Log Out</p>
+                    </button>
+                    <button
+                      className="flex gap-2"
+                      onClick={() => selectOption(handleClickDashboard())}
+                    >
+                      <p className="pt-1 text-xl">
+                        <VscDashboard />
+                      </p>
+                      <p>Dashboard</p>
                     </button>
                   </div>
                 )}

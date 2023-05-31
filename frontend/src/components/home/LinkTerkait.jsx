@@ -14,7 +14,7 @@ const LinkTerkait = () => {
 
   return (
     <div className="lg:mx-20 mx-5 pb-36">
-      <div className="bg-sky-200 text-center py-10 lg:flex rounded-md">
+      <div className="bg-sky-200 text-center py-10 lg:flex rounded-md shadow-lg">
         <h1 className="text-3xl font-semibold text-sky-800 md:mr-16 pb-4">
           Link Terkait
         </h1>
@@ -22,17 +22,17 @@ const LinkTerkait = () => {
           <div
             onMouseEnter={() => handleMouseEnter(0)}
             onMouseLeave={handleMouseLeave}
-            className={`gap-4 justify-center bg-cyan-600 h-[300px] px-4 rounded-lg shadow-lg w-full mx-10 md:mx-0 relative ${
+            className={`gap-4 justify-center bg-sky-50 h-[300px] hover:bg-sky-700 hover:text-white px-4 rounded-lg shadow-lg w-full mx-10 md:mx-0 relative ${
               hoveredIndex === 0 ? "border-4 border-blue-500" : ""
             }`}
           >
             <div className="grid justify-center pt-3">
-              <p className="text-cyan-600 my-2 py-3 text-5xl bg-white w-16  mt-4 pl-2 rounded-lg">
+              <p className="text-white my-2 py-3 text-5xl bg-sky-600 w-16  mt-4 pl-2 rounded-lg">
                 <TbCirclesRelation />
               </p>
             </div>
             <div>
-              <h1 className=" text-white font-semibold text-2xl pt-8">
+              <h1 className=" text-sky-800font-semibold text-2xl pt-8">
                 Afirmasi
               </h1>
               <p className="">Sinergi Lintas Sektor (SILET)</p>

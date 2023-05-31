@@ -1,19 +1,27 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../redux/actions/postActions";
 import { FaUsers } from "react-icons/fa";
-import { useSpring, animated } from "react-spring";
+import CountUp from 'react-countup';
 
 const Total = () => {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.post);
+  const [animatedNumbers, setAnimatedNumbers] = useState([]);
 
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (posts) {
+      const numbers = posts.slice(0, 6).map((data) => data.Jumlah);
+      setAnimatedNumbers(numbers);
+    }
+  }, [posts]);
+
   const getBackgroundColor = (index) => {
-    const pastelColors = ["#6096B4", "#93BFCF", "#74ae99", "#ce9b9b", "#EDC6B1"]; // Contoh warna pastel yang berbeda-beda
+    const pastelColors = ["#6096B4", "#93BFCF", "#74ae99", "#ce9b9b", "#EDC6B1"];
     const colorIndex = index % pastelColors.length;
     return pastelColors[colorIndex];
   };
@@ -21,11 +29,11 @@ const Total = () => {
   return (
     <div className="lg:mx-16 mx-5">
       <div className="grid pt-16 xl:grid-cols-6 sm:grid-cols-2 gap-3 ">
-        {posts?.slice(0, 6).map((data, index) => (
-          <div key={data.id}>
+        {animatedNumbers.map((number, index) => (
+          <div key={index}>
             <div className="">
               <div
-                className={`gap-4 pt-4 justify-center h-56 px-5 rounded-lg shadow-lg`}
+                className={`gap-4 pt-4 justify-center h-64 px-5 rounded-lg shadow-lg`}
                 style={{ backgroundColor: getBackgroundColor(index) }}
               >
                 <div className="">
@@ -35,10 +43,10 @@ const Total = () => {
                 </div>
                 <div>
                   <h1 className="text-white text-2xl pt-12">
-                    {data.Nama_data}
+                    {posts && posts[index].Nama_data}
                   </h1>
-                  <p className="font-bold text-white text-5xl ">
-                    {data.Jumlah}
+                  <p className="font-bold text-white text-5xl">
+                    <CountUp end={number} duration={4} />
                   </p>
                 </div>
               </div>
@@ -51,4 +59,3 @@ const Total = () => {
 };
 
 export default Total;
-

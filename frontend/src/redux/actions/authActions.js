@@ -31,3 +31,31 @@ export const login = (username, password, navigate) => async (dispatch) => {
     toast.error(error.message);
   }
 };
+
+export const getMe = () => async (dispatch, getState) => {
+  try {
+    const { token } = getState().auth;
+
+    const response = await axios.get(
+      `${process.env.REACT_APP_AUTH_API}/api/v1/auth/me`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const { data } = response?.data;
+    dispatch(setUser(data));
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      toast.error(error?.response?.data?.message);
+      if (error.response.status === 401) {
+        dispatch(logout());
+      }
+      return;
+    }
+
+    toast.error(error.message);
+  }
+};

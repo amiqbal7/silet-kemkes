@@ -5,6 +5,7 @@ import Coba from "../../pages/coba";
 import Tentang from "../Tentang";
 import LinkTerkait from "./LinkTerkait";
 import PesertaAktif from "../PesertaAktif";
+import Peserta from "../Peserta";
 
 const Home = () => {
   return (
@@ -14,6 +15,7 @@ const Home = () => {
       <Tentang />
       <LinkTerkait />
       <PesertaAktif />
+      <Peserta />
       
 
     </>
