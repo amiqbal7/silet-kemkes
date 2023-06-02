@@ -3,11 +3,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getPosts } from "../redux/actions/postActions";
 import { FaUsers } from "react-icons/fa";
 import CountUp from 'react-countup';
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 const Total = () => {
   const dispatch = useDispatch();
   const { posts } = useSelector((state) => state.post);
   const [animatedNumbers, setAnimatedNumbers] = useState([]);
+
+  useEffect(() => {
+    Aos.init();
+    Aos.refresh();
+  }, []);
 
   useEffect(() => {
     dispatch(getPosts());
@@ -27,7 +34,7 @@ const Total = () => {
   };
 
   return (
-    <div className="lg:mx-16 mx-5">
+    <div data-aos="fade-up" className="lg:mx-16 mx-5">
       <div className="grid pt-16 xl:grid-cols-6 sm:grid-cols-2 gap-3 ">
         {animatedNumbers.map((number, index) => (
           <div key={index}>

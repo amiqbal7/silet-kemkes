@@ -123,15 +123,13 @@ app.get("/silet_kemkes", (req, res) => {
 app.put("/update/:id", (req, res) => {
   const id = req.params.id;
   const sql = "UPDATE data SET `Nama_data` =?, `Jumlah` =? WHERE id =?"
-  const Jumlah = req.body.Jumlah;
-  const Nama_data = req.body.Nama_data;
 
   db.query(
     sql,
-    [Jumlah, Nama_data, id],
+    [req.body.Nama_data, req.body.Jumlah, id],
     (err, result) => {
       if(err) return res.json("err");
-      return res.json({update: true})
+      return res.json({updated: true})
     }
   );
 });

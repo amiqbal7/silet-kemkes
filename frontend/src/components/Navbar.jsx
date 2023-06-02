@@ -44,10 +44,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-20 bg-sky-800 drop-shadow-lg px-16 py-3">
+    <div className="sticky top-0 z-20 bg-[#306480] drop-shadow-lg px-16 py-3">
       <div className="flex justify-between items-center w-full text-white">
         <div className="">
-          <img src={logo} className="w-56" onClick={handleClickHome}/>
+          <img src={logo} className="w-48" onClick={handleClickHome}/>
         </div>
         <div className="lg:text-lg ">
           <ul className="hidden md:flex font-semibold md:gap-5">

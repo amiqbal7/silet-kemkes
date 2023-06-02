@@ -26,7 +26,7 @@ const EditForm = () => {
     if (postData) {
       setFormData({
         Nama_data: postData.Nama_data,
-        Jumlah: "",
+        Jumlah: postData.Jumlah,
       });
     }
   }, [id, posts]);
@@ -48,18 +48,14 @@ const EditForm = () => {
     }
 
     // Lakukan permintaan HTTP PUT menggunakan Axios
-    axios
-      .put(`http://localhost:4000/update/${id}`, formData)
-      .then((response) => {
-        console.log("Post updated successfully:", response.data);
+    axios.put(`http://localhost:4000/update/${id}`, formData).then((res) => {
+      if (res.data.updated) {
         navigate("/dashboard");
-      })
-      .catch((error) => {
-        console.error("Error updating post:", error);
-      });
+      } else {
+        alert("Not updated");
+      }
+    });
   };
-
-
 
   return (
     <div className="mx-auto justify-center grid gap-3 my-48">
