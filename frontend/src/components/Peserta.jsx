@@ -2,7 +2,7 @@ import React from "react";
 
 const Peserta = () => {
   return (
-    <div className="px-12 py-16">
+    <div className="px-5 py-16" name="Peserta">
       <h1 className="text-xl md:text-3xl text-center lg:px-72 md:px-40  font-bold pb-7">
         Total Peserta Lulus & Aktif Berdasarkan Propinsi
       </h1>

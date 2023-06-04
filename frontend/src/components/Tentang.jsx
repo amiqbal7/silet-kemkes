@@ -1,20 +1,12 @@
-import { useEffect } from "react";
 import dokter from "../assets/dokter.jpg";
-import Aos from "aos";
 import "aos/dist/aos.css";
 
 const Tentang = () => {
-
-  useEffect(() => {
-    Aos.init();
-    Aos.refresh();
-  }, []);
-
   return (
-    <div className="bg-sky-200 my-64 pb-8">
+    <div className="bg-sky-200 mt-48 mb-28 pb-8" name="Tentang">
       <div className="flex gap-24 pt-10 lg:max-w-7xl lg:mx-auto mx-5">
         <div className="relative w-full hidden lg:block mt-[-80px]">
-          <img src={dokter} data-aos="zoom-in"/>
+          <img src={dokter} data-aos="zoom-in" />
         </div>
         <div className="text-center lg:text-start" data-aos="fade-up">
           <h1 className="pb-5 text-sky-600 text-xl font-semibold">

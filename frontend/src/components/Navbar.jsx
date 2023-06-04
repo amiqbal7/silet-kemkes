@@ -34,6 +34,7 @@ const Navbar = () => {
   };
   const handleClickLogin = () => {
     navigate(`/login`);
+    window.location.reload();
   };
 
   const handleClickHome = () => {
@@ -41,23 +42,24 @@ const Navbar = () => {
   };
   const handleClickDashboard = () => {
     navigate(`/dashboard`);
+    window.location.reload();
   };
 
   return (
-    <div className="sticky top-0 z-20 bg-[#306480] drop-shadow-lg px-16 py-3">
+    <div className="sticky top-0 z-20 bg-[#306480] drop-shadow-lg px-8 py-3">
       <div className="flex justify-between items-center w-full text-white">
         <div className="">
-          <img src={logo} className="w-48" onClick={handleClickHome}/>
+          <img src={logo} className="w-44" onClick={handleClickHome}/>
         </div>
         <div className="lg:text-lg ">
-          <ul className="hidden md:flex font-semibold md:gap-5">
+          <ul className="hidden lg:flex font-semibold lg:gap-5">
             <li
-              className="hover:text-green-500 relative cursor-pointer transition-all 
+              className="hover:text-blue-500 relative cursor-pointer transition-all 
             before:absolute before:-bottom-2 before:left-0 before:w-0 before:h-1 before:rounded-sm before:opacity-0 before:transition-all
-            before:duration-500 before:bg-green-500 hover:before:w-full hover:before:opacity-100"
+            before:duration-500 before:bg-blue-500 hover:before:w-full hover:before:opacity-100"
             >
               <Link
-                to="home"
+                to="header"
                 smooth={true}
                 duration={500}
                 onClick={() => handleClickHome()}
@@ -66,69 +68,54 @@ const Navbar = () => {
               </Link>
             </li>
             <li
-              className="hover:text-green-500 relative cursor-pointer transition-all 
+              className="hover:text-blue-500 relative cursor-pointer transition-all 
             before:absolute before:-bottom-2 before:left-0 before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all
-            before:duration-500 before:bg-green-500 hover:before:w-full hover:before:opacity-100"
+            before:duration-500 before:bg-blue-500 hover:before:w-full hover:before:opacity-100"
             >
               <Link
-                to="about"
+                to="Tentang"
                 smooth={true}
                 offset={-200}
                 duration={500}
                 onClick={() => handleClickHome()}
               >
-                About
+                Tentang
               </Link>
             </li>
             <li
-              className="hover:text-green-500 relative cursor-pointer transition-all 
+              className="hover:text-blue-500 relative cursor-pointer transition-all 
             before:absolute before:-bottom-2 before:left-0 before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all
-            before:duration-500 before:bg-green-500 hover:before:w-full hover:before:opacity-100"
+            before:duration-500 before:bg-blue-500 hover:before:w-full hover:before:opacity-100"
             >
               <Link
-                to="support"
+                to="LinkTerkait"
                 smooth={true}
                 offset={-50}
                 duration={500}
                 onClick={() => handleClickHome()}
               >
-                Support
+                Link Terkait
               </Link>
             </li>
             <li
-              className="hover:text-green-500 relative cursor-pointer transition-all 
+              className="hover:text-blue-500 relative cursor-pointer transition-all 
             before:absolute before:-bottom-2 before:left-0 before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all
-            before:duration-500 before:bg-green-500 hover:before:w-full hover:before:opacity-100"
+            before:duration-500 before:bg-blue-500 hover:before:w-full hover:before:opacity-100"
             >
               <Link
-                to="event"
+                to="PesertaAktif"
                 smooth={true}
                 offset={-100}
                 duration={500}
                 onClick={() => handleClickHome()}
               >
-                Event
+                Peserta
               </Link>
             </li>
 
-            <li
-              className="hover:text-green-500 relative cursor-pointer transition-all 
-            before:absolute before:-bottom-2 before:left-0 before:w-0 before:h-1 before:rounded-full before:opacity-0 before:transition-all
-            before:duration-500 before:bg-green-500 hover:before:w-full hover:before:opacity-100"
-            >
-              <Link
-                to="Location"
-                smooth={true}
-                offset={-100}
-                duration={500}
-                onClick={() => handleClickHome()}
-              >
-                Location
-              </Link>
-            </li>
           </ul>
         </div>
-        <div className="hidden md:flex ">
+        <div className="hidden lg:flex ">
           {isLoggedIn ? (
             <ul className="flex gap-0 pt-2">
               <h1>
@@ -181,7 +168,7 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className="md:hidden mr-4" onClick={handleClick}>
+        <div className="lg:hidden mr-4" onClick={handleClick}>
           {!nav ? (
             <AiOutlineMenu className="w-5" />
           ) : (
@@ -189,13 +176,13 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      <ul className={!nav ? "hidden" : " bg-gray-100 w-full px-8 "}>
-        <li className="border-b-2 border-zinc-300 w-full hover:text-green-500">
+      <ul className={!nav ? "hidden" : " bg-transparent w-full text-center text-gray-900 px-8"}>
+        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1">
           <Link onClick={handleClose} to="home" smooth={true} duration={500}>
             Home
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full hover:text-green-500">
+        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1" >
           <Link
             onClick={handleClose}
             to="about"
@@ -206,7 +193,7 @@ const Navbar = () => {
             About
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full hover:text-green-500">
+        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1">
           <Link
             onClick={handleClose}
             to="support"
@@ -217,7 +204,7 @@ const Navbar = () => {
             Support
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full hover:text-green-500">
+        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1">
           <Link
             onClick={handleClose}
             to="Event"
@@ -229,7 +216,7 @@ const Navbar = () => {
           </Link>
         </li>
 
-        <li className="border-b-2 border-zinc-300 w-full hover:text-green-500">
+        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1">
           <Link
             onClick={handleClose}
             to="Faq"
@@ -242,7 +229,7 @@ const Navbar = () => {
         </li>
 
         <div className="flex flex-col my-4">
-          <button className="bg-transparent text-[#007936] border-[#007936] px-8 py-3 mb-4">
+          <button onClick={handleClickLogin} className="bg-gray-100 font-semibold text-sky-700 border-[#202de5] px-8 py-3 mb-4">
             Sign In
           </button>
         </div>

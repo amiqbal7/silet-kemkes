@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Routes, BrowserRouter, Route } from "react-router-dom";
+import { Routes, BrowserRouter, Route, useLocation } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import Home from "./components/home/Home";
 import Dashboard from "./pages/Dashboard";
 import EditForm from "./pages/EditForm";
@@ -22,40 +24,57 @@ function App() {
     }, 2000);
   }, []);
 
+  Aos.init({
+    duration: 1800,
+    offset: 200,
+    once: true,
+  });
+
+  const AppContent = () => {
+    const location = useLocation();
+    const [showNavbarFooter, setShowNavbarFooter] = useState(true);
+
+    useEffect(() => {
+      const currentPath = location.pathname;
+      setShowNavbarFooter(
+        currentPath !== "/login"
+      );
+    }, [location]);
+
+    return (
+      <>
+        {showNavbarFooter && <Navbar />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/update/:id" element={<EditForm />} />
+          <Route path="/test" element={<Test />} />
+          <Route
+            path="/dashboard"
+            element={
+              <Protected>
+                <Dashboard />
+              </Protected>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <RedirectifProtected>
+                <Login />
+              </RedirectifProtected>
+            }
+          />
+        </Routes>
+        {showNavbarFooter && <Footer />}
+      </>
+    );
+  };
+
   return (
     <Provider store={store}>
       <BrowserRouter>
-        {isLoading ? (
-          <Loading />
-        ) : (
-          <div>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-
-              <Route path="/update/:id" element={<EditForm />} />
-              <Route path="/test" element={<Test />} />
-              <Route
-                path="/dashboard"
-                element={
-                  <Protected>
-                    <Dashboard />
-                  </Protected>
-                }
-              />
-              <Route
-                path="/login"
-                element={
-                  <RedirectifProtected>
-                    <Login />
-                  </RedirectifProtected>
-                }
-              />
-            </Routes>
-          </div>
-        )}
+        {isLoading ? <Loading /> : <AppContent />}
       </BrowserRouter>
-      <Footer />
     </Provider>
   );
 }
