@@ -42,7 +42,7 @@ function App() {
     }, [location]);
 
     return (
-      <>
+      <div className="font-poppins">
         {showNavbarFooter && <Navbar />}
         <Routes>
           <Route path="/" element={<Home />} />
@@ -66,7 +66,7 @@ function App() {
           />
         </Routes>
         {showNavbarFooter && <Footer />}
-      </>
+      </div>
     );
   };
 

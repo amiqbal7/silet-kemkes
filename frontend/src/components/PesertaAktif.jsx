@@ -64,7 +64,7 @@ const PesertaAktif = () => {
       className={`lg:mx-16 pb-40 pt-16 mx-5 ${isVisible ? "animate-appear" : ""}`}
       name="PesertaAktif"
     >
-      <h1 className="m-5 text-center text-2xl font-bold">Peserta Aktif dan Peserta Lulus</h1>
+      <h1 className="m-5 text-center text-3xl font-bold">Peserta Aktif dan Peserta Lulus</h1>
       <div className="grid xl:grid-cols-5 sm:grid-cols-2 gap-3 ">
         {animatedNumbers.map((number, index) => {
           const postData = posts.find((data) => data.id === [2, 7, 8, 9, 10, 11, 3, 4, 5, 6][index]);

@@ -23,24 +23,25 @@ const Header = () => {
       >
         {Data.heroData.map((item, index) => (
           <SwiperSlide
-            className="linear-bg relative rounded overflow-hidden"
+            className="relative rounded overflow-hidden"
             key={index}
           >
+            <div className="absolute inset-0 bg-black bg-opacity-50"></div> {/* Lapisan overlay */}
             <div className="">
               <img
                 src={item.img}
-                alt="movie"
+                alt=""
                 className="w-full h-[700px] xl:h-[800px] object-cover"
               />
-              <div className="">
+              <div className="text-center">
                 <div className="absolute bottom-0 right-0 left-0 flex flex-col xl:py-48 md:py-64 py-36 justify-center mx-5">
-                  <h1 className="text-white lg:text-4xl xl:text-5xl truncate capitalize font-sans sm:text-2xl text-lg font-bold ">
+                  <h1 className="text-white lg:text-4xl xl:text-5xl truncate capitalize text-2xl font-bold ">
                     {item.title}
                   </h1>
-                  <div className="flex-MovieItem">
-                    <div className="flex gap-2 pt-[-16px] py-2 font-semibold lg:text-lg">
-                      <div className="flex">
-                        <p className="text-white text-xs lg:text-lg">
+                  <div className="">
+                    <div className="pt-[-16px] py-2  lg:text-lg">
+                      <div className="">
+                        <p className="text-white text-center text-sm lg:text-lg">
                           {item.desc}
                         </p>
                       </div>

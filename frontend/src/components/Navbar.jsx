@@ -49,7 +49,7 @@ const Navbar = () => {
     <div className="sticky top-0 z-20 bg-[#306480] drop-shadow-lg px-8 py-3">
       <div className="flex justify-between items-center w-full text-white">
         <div className="">
-          <img src={logo} className="w-44" onClick={handleClickHome}/>
+          <img src={logo} className="w-44" onClick={handleClickHome} />
         </div>
         <div className="lg:text-lg ">
           <ul className="hidden lg:flex font-semibold lg:gap-5">
@@ -112,7 +112,6 @@ const Navbar = () => {
                 Peserta
               </Link>
             </li>
-
           </ul>
         </div>
         <div className="hidden lg:flex ">
@@ -133,7 +132,7 @@ const Navbar = () => {
                   </span>
                 </button>
                 {isOpen && (
-                  <div className="absolute text-sky-500 font-medium bg-white rounded-sm w-28 px-3 py-2 top-10 right-0 text-center">
+                  <div className="absolute text-sky-500 font-medium bg-white rounded-sm w-36 px-3 py-2 top-10 right-0 text-center">
                     <button
                       className="flex gap-2"
                       onClick={() => selectOption(handlelogout())}
@@ -159,7 +158,7 @@ const Navbar = () => {
           ) : (
             <ul className="flex gap-3">
               <button
-                className="bg-white text-cyan-700 rounded-sm font-bold px-4 py-1"
+                className="bg-blue-600 text-white rounded-sm font-bold px-4 py-1"
                 onClick={() => handleClickLogin()}
               >
                 login
@@ -176,63 +175,100 @@ const Navbar = () => {
           )}
         </div>
       </div>
-      <ul className={!nav ? "hidden" : " bg-transparent w-full text-center text-gray-900 px-8"}>
-        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1">
-          <Link onClick={handleClose} to="home" smooth={true} duration={500}>
+      <ul
+        className={
+          !nav
+            ? "hidden"
+            : " bg-transparent w-full text-center text-gray-200 px-8"
+        }
+      >
+        <li className="border-b-2 border-zinc-300 w-full hover:bg-blue-500 py-1">
+          <Link onClick={handleClose} to="header" smooth={true} duration={500}>
             Home
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1" >
+        <li className="border-b-2 border-zinc-300 w-full hover:bg-blue-500 py-1">
           <Link
             onClick={handleClose}
-            to="about"
+            to="Tentang"
             smooth={true}
             offset={-200}
             duration={500}
           >
-            About
+            Tentang
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1">
+        <li className="border-b-2 border-zinc-300 w-full hover:bg-blue-500 py-1">
           <Link
             onClick={handleClose}
-            to="support"
+            to="LinkTerkait"
             smooth={true}
             offset={-50}
             duration={500}
           >
-            Support
+            Link Terkait
           </Link>
         </li>
-        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1">
+        <li className="border-b-2 border-zinc-300 w-full hover:bg-blue-500 py-1">
           <Link
             onClick={handleClose}
-            to="Event"
+            to="Peserta"
             smooth={true}
             offset={-100}
             duration={500}
           >
-            Event
+            Peserta
           </Link>
         </li>
-
-        <li className="border-b-2 border-zinc-300 w-full hover:text-gray-300 py-1">
-          <Link
-            onClick={handleClose}
-            to="Faq"
-            smooth={true}
-            offset={-100}
-            duration={500}
-          >
-            FAQ
-          </Link>
-        </li>
-
-        <div className="flex flex-col my-4">
-          <button onClick={handleClickLogin} className="bg-gray-100 font-semibold text-sky-700 border-[#202de5] px-8 py-3 mb-4">
-            Sign In
+        <li className="border-zinc-300 py-1 w-full flex justify-center">
+          {isLoggedIn ? (
+            <ul className="flex gap-0 items-center">
+              <h1 className="text-white hover:text-subMain">
+                Welcome, {user && user.username ? user.username : "Guest"}
+              </h1>
+              <div className="relative">
+                <button
+                  className={`bg-transparent text-gray-700 font-semibold py-2 px-4 rounded inline-flex items-center transform transition duration-300 ease-in-out ${
+                    rotate ? "rotate-180" : ""
+                  }`}
+                  onClick={toggleDropdown}
+                >
+                  <span className="text-white">
+                    <AiOutlineCaretDown />
+                  </span>
+                </button>
+                {isOpen && (
+                  <div className="absolute text-sky-500 font-medium bg-white rounded-sm w-36 px-3 py-2 top-10 right-0 text-center">
+                    <button
+                      className="flex gap-2"
+                      onClick={() => selectOption(handlelogout())}
+                    >
+                      <p className="pt-1 text-xl">
+                        <VscSignOut />
+                      </p>
+                      <p>Log Out</p>
+                    </button>
+                    <button
+                      className="flex gap-2"
+                      onClick={() => selectOption(handleClickDashboard())}
+                    >
+                      <p className="pt-1 text-xl">
+                        <VscDashboard />
+                      </p>
+                      <p>Dashboard</p>
+                    </button>
+                  </div>
+                )}
+              </div>
+            </ul>
+          ) : (
+            <div className="flex flex-col my-1 w-full">
+          <button onClick={handleClickLogin} className="bg-blue-600 rounded-md font-semibold text-white hover:bg-white hover:text-blue-600 hover:border-blue-600 hover:border px-8 py-3">
+            Login
           </button>
         </div>
+          )}
+        </li>
       </ul>
     </div>
   );

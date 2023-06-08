@@ -6,12 +6,8 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        main: '#0801A1A', 
-        subMain: '#F20000',
-        dry: '#0B0F29',
-        text: 'C0C0C0',
-        border: '#4b5563'
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
       }
     },
   },

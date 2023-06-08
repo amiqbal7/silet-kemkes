@@ -7,24 +7,24 @@ const Data = {
         {
             id: 1,
             img: banner1,
-            title: 'Noteworthy technology acquisitions 2021',
-            desc: 'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
+            title: 'SILET',
+            desc: 'Sinergi Lintas Sektor Kementrian Kesehatan Republik Indonesia',
             button: 'Read More',
             
         },
         {
             id: 2,
             img: banner2,
-            title: 'Noteworthy technology acquisitions 2021',
-            desc: 'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
+            title: 'PPDS/PPDGS',
+            desc: 'Monitoring dan Evaluasi Pemberian Bantuan Biaya Pendidikan Dokter Spesialis Dan Dokter Gigi Spesialis.',
             button: 'Read More',
             
         },
         {
             id: 3,
             img: banner3,
-            title: 'Noteworthy technology acquisitions 2021',
-            desc: 'Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.',
+            title: 'PPSDM',
+            desc: 'Pusat Peningkatan Mutu SDM Kesehatan (Puskat Mutu SDMK)',
             button: 'Read More',
             
         }

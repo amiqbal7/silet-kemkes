@@ -37,12 +37,12 @@ const Footer = () => {
             </div>
           </div>
           <div className="grid gap-3">
-            <h1 className="text-xl font-semibold">Link Terkait</h1>
+            <h1 className="text-xl font-semibold ">Link Terkait</h1>
             <div className="flex gap-2">
               <p className="pt-1">
                 <AiOutlineLine />
               </p>
-              <p>
+              <p className="hover:text-blue-500">
                 <a href="https://kemkes.go.id/">Kementrian Kesehatan RI</a>
               </p>
             </div>
@@ -50,7 +50,7 @@ const Footer = () => {
               <p className="pt-1">
                 <AiOutlineLine />
               </p>
-              <p>
+              <p className="hover:text-blue-500">
                 {" "}
                 <a href="https://ditjen-nakes.kemkes.go.id/">
                   DITJEN Tenaga Kesehatan
@@ -61,7 +61,7 @@ const Footer = () => {
               <p className="pt-1">
                 <AiOutlineLine />
               </p>
-              <p>
+              <p className="hover:text-blue-500">
                 {" "}
                 <a href="https://kemkes.go.id/">Program PPDS</a>
               </p>
@@ -70,7 +70,7 @@ const Footer = () => {
               <p className="pt-1">
                 <AiOutlineLine />
               </p>
-              <p>
+              <p className="hover:text-blue-500">
                 <a href="https://ropeg.kemkes.go.id/osdm/web">
                   Biro Kepegawaian Kemenkes
                 </a>
@@ -81,7 +81,7 @@ const Footer = () => {
       </div>
       <div className="w-full bg-[#6392ab] text-center py-3">
         <div className="md:flex justify-between mx-20">
-          <h1>© 2023 Flowbite™. All Rights Reserved</h1>
+          <h1>© 2023 Direktorat Jenderal Tenaga Kesehatan Kementerian Kesehatan™. All Rights Reserved</h1>
           <div className="flex gap-2 text-2xl justify-center items-center">
             <p><AiOutlineFacebook /></p>
             <p><AiOutlineInstagram /></p>
